@@ -1,6 +1,8 @@
 import { getAccessToken } from "./tokenStore";
 import type { Job, JobSeries, UserSummary } from "../types";
 
+export const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, "") ?? "";
+
 async function parseJson(res: Response) {
   const text = await res.text();
   if (!text) return null;
@@ -19,7 +21,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   if (token) headers.Authorization = `Bearer ${token}`;
   if (init?.body && !headers["Content-Type"]) headers["Content-Type"] = "application/json";
 
-  const res = await fetch(path, { ...init, headers, credentials: "include" });
+  const res = await fetch(`${API_BASE_URL}${path}`, { ...init, headers, credentials: "include" });
   const data = await parseJson(res);
   if (!res.ok) {
     const msg = data?.error ?? res.statusText;

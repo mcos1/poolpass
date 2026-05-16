@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { io, type Socket } from "socket.io-client";
 import { useQueryClient } from "@tanstack/react-query";
+import { API_BASE_URL } from "../lib/api";
 import { getAccessToken } from "../lib/tokenStore";
 import { useAuth } from "../lib/auth";
 
@@ -14,7 +15,7 @@ export function useLiveJobs(enabled: boolean) {
     const token = getAccessToken();
     if (!token) return;
 
-    const socket = io({
+    const socket = io(API_BASE_URL || undefined, {
       path: "/socket.io",
       auth: { token },
       transports: ["websocket"],

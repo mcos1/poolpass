@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fc {
+  --fc-border-color: rgb(51 65 85);
+  --fc-page-bg-color: rgb(2 6 23);
+  --fc-neutral-bg-color: rgb(15 23 42);
+  --fc-list-event-hover-bg-color: rgb(30 41 59);
+  --fc-today-bg-color: rgba(59, 130, 246, 0.12);
+  --fc-event-bg-color: rgb(14 165 233);
+  --fc-event-border-color: rgb(14 165 233);
+  color: rgb(226 232 240);
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.fc .fc-button {
+  background-color: rgb(30 41 59);
+  border-color: rgb(51 65 85);
+  color: rgb(226 232 240);
+}
+
+.fc .fc-button-primary:not(:disabled):active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  background-color: rgb(14 165 233);
+  border-color: rgb(14 165 233);
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: rgb(51 65 85);
+}

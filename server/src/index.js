@@ -69,8 +69,14 @@ setIO(io);
 
 const port = Number(process.env.PORT) || 5000;
 
-await connectDb(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/pool_scheduler");
+try {
+  await connectDb(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/pool_scheduler");
 
-server.listen(port, () => {
-  console.log(`API listening on http://localhost:${port}`);
-});
+  server.listen(port, () => {
+    console.log(`API listening on port ${port}`);
+  });
+} catch (err) {
+  console.error("Failed to start API server");
+  console.error(err);
+  process.exit(1);
+}
